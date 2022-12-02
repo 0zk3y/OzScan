@@ -1,20 +1,14 @@
 #!/bin/bash
-#Make Sure GO Lang in installed over your Machine
+#Make Sure GO Lang and other Tools Installed in installed over your Machine
 echo "Please enter Domain Name"
 read urlname
 echo "You are setting Target as:" $urlname
 echo "Checking if Binaries are installed or not"
-if which nuclei >/dev/null; then
-    echo "Nuclei found"
+if which sublist3r 2>&1 ; then
+    echo "Subfinder found"
 else
-    echo "Nuclei not found, please download using following command"
-    echo "go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest"
-fi
-if which katana 2>&1 ; then
-   echo "Katana found"
-else
-    echo "Katana not found, please download using following command"
-    echo "go install github.com/projectdiscovery/katana/cmd/katana@latest"
+    echo "Subfinder not found, please download using following command"
+    echo "go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest"
 fi
 if which httpx 2>&1 ; then
     echo "httpx found"
@@ -22,11 +16,17 @@ else
     echo "httpx not found, please download using following command"
     echo "go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest"
 fi
-if which sublist3r 2>&1 ; then
-    echo "Subfinder found"
+if which katana 2>&1 ; then
+   echo "Katana found"
 else
-    echo "Subfinder not found, please download using following command"
-    echo "go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest"
+    echo "Katana not found, please download using following command"
+    echo "go install github.com/projectdiscovery/katana/cmd/katana@latest"
+fi
+if which nuclei >/dev/null; then
+    echo "Nuclei found"
+else
+    echo "Nuclei not found, please download using following command"
+    echo "go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest"
 fi
 echo "====================================================================================================================================================="
 echo "Developed by 0zk3y"
