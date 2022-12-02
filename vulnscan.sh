@@ -1,6 +1,12 @@
 #!/bin/bash
 #Make Sure GO Lang and other Tools Installed in installed over your Machine
-echo "Please enter Domain Name"
+echo " _   _       _       _____                 "
+echo "| | | |     | |     /  ___|                "
+echo "| | | |_   _| |_ __ \ '--.  ___ __ _ _ __  "
+echo "| | | | | | | | '_ \ `--. \/ __/ _` | '_ \ "
+echo "\ \_/ | |_| | | | | /\__/ | (_| (_| | | | |"
+echo " \___/ \__,_|_|_| |_\____/ \___\__,_|_| |_|"
+echo "Please enter Domain Name you want to scan:"
 read urlname
 echo "You are setting Target as:" $urlname
 echo "Checking if Binaries are installed or not"
