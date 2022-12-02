@@ -29,7 +29,8 @@ else
     echo "go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest"
 fi
 echo "====================================================================================================================================================="
-echo "Developed by Raziq"
+echo "Developed by 0zk3y"
+echo "For queries, contact @0zk3y on Twitter or raise an issue at https://github.com/0zk3y/VulnScan"
 echo "====================================================================================================================================================="
 echo "Running Scan on" $urlname
 subfinder -d $urlname >> subdomains.txt; httpx --silent subdomains.txt >> alive_domains.txt; katana --silent alive_domains.txt >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
@@ -39,3 +40,7 @@ echo "Subfinder: subdomains.txt"
 echo "httpx: alive_domains.txt"
 echo "Katana: endpoints.txt"
 echo "Nuclei: nuclei_output.txt"
+echo "====================================================================================================================================================="
+echo "Developed by 0zk3y"
+echo "For queries, contact @0zk3y on Twitter or raise an issue at https://github.com/0zk3y/VulnScan"
+echo "====================================================================================================================================================="
