@@ -62,8 +62,10 @@ echo "==========================================================================
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
 echo "====================================================================================================================================================="
-exit 1
+echo "Developed by 0zk3y"
+echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
 echo "====================================================================================================================================================="
+exit 1
 if [ "$option" -eq "2" ]; then
 echo "Running Scan on" $urlname
 katana --silent $urlname >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
@@ -72,8 +74,10 @@ echo "Scanning Completed, results are saved as below"
 echo "Katana: endpoints.txt"
 echo "Nuclei: nuclei_output.txt"
 echo "====================================================================================================================================================="
-exit 1
+echo "Developed by 0zk3y"
+echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
 echo "====================================================================================================================================================="
+exit 1
 if [ "$option" -eq "3" ]; then
 echo "Running Scan on" $urlname
 subfinder -d $urlname >> subdomains.txt; httpx --silent subdomains.txt >> alive_domains.txt; katana --silent alive_domains.txt >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
@@ -84,8 +88,10 @@ echo "httpx: alive_domains.txt"
 echo "Katana: endpoints.txt"
 echo "Nuclei: nuclei_output.txt"
 echo "====================================================================================================================================================="
-exit 1
+echo "Developed by 0zk3y"
+echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
 echo "====================================================================================================================================================="
+exit 1
 if [ "$option" -eq "4" ]; then
 echo "Running Scan on" $urlname
 katana --silent $urlname >> endpoints.txt; waybackurls $urlname >> all_urls.txt ; echo $urlname | sudo gf sqli >> sqli; nuclei -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
@@ -112,8 +118,10 @@ echo "WaybackUrls: all_urls.txt"
 echo "gf: sqli"
 echo "sqlmap check in your /home/YOURUSERNAME/.local/share/sqlmap/output/"$urlname
 echo "====================================================================================================================================================="
-exit 1
+echo "Developed by 0zk3y"
+echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
 echo "====================================================================================================================================================="
+exit 1
 if [ "$option" -ne "1" ] || [ "$option" -ne "2" ] || [ "$option" -ne "3" ] || [ "$option" -ne "4" ] || [ "$option" -ne "5" ]; then
     echo "Please select a valid option"
     exit 1
