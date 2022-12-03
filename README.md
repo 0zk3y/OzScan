@@ -11,3 +11,5 @@ Running the Program:
 ```cd VulnScan```
 
 ```sudo sh VulnScan```
+
+Note: This tool is very slow as it runs Tools like SQLMap and Nuclei over all URLs it finds.
