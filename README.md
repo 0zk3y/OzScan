@@ -12,4 +12,4 @@ Running the Program:
 
 ```sudo sh VulnScan```
 
-Note: This tool is very slow as it runs Tools like SQLMap and Nuclei over all URLs it finds.
+Note: This tool is very slow as it runs Tools like SQLMap and Nuclei over all URLs it finds, hence takes a lot of patience. Results may be falsepositives you will have to validate that yourself. Also this tool will generate a lot of Duplicates so please remove them using ```aws``` or ```uniq``` command.
