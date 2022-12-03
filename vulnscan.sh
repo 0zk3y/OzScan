@@ -12,19 +12,19 @@ echo "4. Vulnerability Scan with Nuclei and SQLMap over SQLi Parameters over Dom
 echo "5. Vulnerability Scan with Nuclei and SQLMap over SQLi Parameters over Domain and all subdomains"
 read option
 echo "Checking if Binaries are installed or not"
-if which sublist3r 2>&1 ; then
+if which sublist3r >/dev/null; then
     echo "Subfinder found"
 else
     echo "Subfinder not found, Trying to install subfinder (Make sure GO Lang is installed, else it will fail)"
     go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 fi
-if which httpx 2>&1 ; then
+if which httpx >/dev/null; then
     echo "httpx found"
 else
     echo "httpx not found, Trying to install httpx (Make sure GO Lang is installed, else it will fail)"
     go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 fi
-if which katana 2>&1 ; then
+if which katana >/dev/null; then
    echo "Katana found"
 else
     echo "Katana not found, Trying to install Katana (Make sure GO Lang is installed, else it will fail)"
@@ -57,7 +57,6 @@ fi
 if [ "$option" -eq "1" ]; then
 echo "Running Scan on" $urlname
 subfinder -d $urlname >> subdomains.txt
-fi
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
@@ -66,9 +65,9 @@ echo "Developed by 0zk3y"
 echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
 echo "====================================================================================================================================================="
 exit 1
-if [ "$option" -eq "2" ]; then
+elif [ "$option" -eq "2" ]; then
 echo "Running Scan on" $urlname
-katana --silent $urlname >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
+katana -u https://$urlname/ >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Katana: endpoints.txt"
@@ -78,9 +77,9 @@ echo "Developed by 0zk3y"
 echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
 echo "====================================================================================================================================================="
 exit 1
-if [ "$option" -eq "3" ]; then
+elif [ "$option" -eq "3" ]; then
 echo "Running Scan on" $urlname
-subfinder -d $urlname >> subdomains.txt; httpx --silent subdomains.txt >> alive_domains.txt; katana --silent alive_domains.txt >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
+subfinder -d $urlname >> subdomains.txt; cat subdomains.txt | httpx | sort -u >> alive_domains.txt; katana --silent alive_domains.txt >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
@@ -92,9 +91,9 @@ echo "Developed by 0zk3y"
 echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
 echo "====================================================================================================================================================="
 exit 1
-if [ "$option" -eq "4" ]; then
+elif [ "$option" -eq "4" ]; then
 echo "Running Scan on" $urlname
-katana --silent $urlname >> endpoints.txt; waybackurls $urlname >> all_urls.txt ; echo $urlname | sudo gf sqli >> sqli; nuclei -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
+katana --silent https://$urlname/ >> endpoints.txt; waybackurls $urlname >> all_urls.txt ; echo $urlname | sudo gf sqli >> sqli; nuclei -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Katana: endpoints.txt"
@@ -105,9 +104,9 @@ echo "sqlmap check in your /home/YOURUSERNAME/.local/share/sqlmap/output/"$urlna
 echo "====================================================================================================================================================="
 exit 1
 echo "====================================================================================================================================================="
-if [ "$option" -eq "5" ]; then
+elif [ "$option" -eq "5" ]; then
 echo "Running Scan on" $urlname
-subfinder -d $urlname >> subdomains.txt; httpx --silent subdomains.txt >> alive_domains.txt; katana --silent alive_domains.txt >> endpoints.txt; waybackurls >> all_urls.txt ; $urlname | sudo gf sqli >> sqli | nuclei -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
+subfinder -d $urlname >> subdomains.txt; cat subdomains.txt | httpx | sort -u >> alive_domains.txt; katana --silent alive_domains.txt >> endpoints.txt; waybackurls >> all_urls.txt ; $urlname | sudo gf sqli >> sqli | nuclei -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
@@ -122,6 +121,7 @@ echo "Developed by 0zk3y"
 echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
 echo "====================================================================================================================================================="
 exit 1
-if [ "$option" -ne "1" ] || [ "$option" -ne "2" ] || [ "$option" -ne "3" ] || [ "$option" -ne "4" ] || [ "$option" -ne "5" ]; then
+else
     echo "Please select a valid option"
     exit 1
+fi
