@@ -56,10 +56,15 @@ else
 fi
 if [ "$option" -eq "1" ]; then
 echo "Running Scan on" $urlname
-subfinder -d $urlname >> subdomains.txt
+subfinder --silent -d $urlname >> subdomains.txt
+echo "====================================================================================================================================================="
+echo "Printing the alive Domains"
+echo "====================================================================================================================================================="
+cat subdomains.txt | httpx --silent -o alive.txt
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
+echo "HTTPX: alive.txt"
 echo "====================================================================================================================================================="
 echo "Developed by 0zk3y"
 echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
