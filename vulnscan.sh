@@ -1,5 +1,5 @@
 #!/bin/bash
-#Make Sure GO Lang and other Tools Installed in installed over your Machine
+#Make Sure GO Lang and Python are installed as all of the tools require it
 if [ $(id -u) -ne 0 ]; then echo "Please run the script as Root"; exit 1; fi
 echo "Please enter Domain Name you want to scan:"
 read urlname
@@ -63,7 +63,7 @@ echo "==========================================================================
 cat subdomains.txt | httpx --silent -o alive.txt
 for subdomain in $(cat subdomains.txt); do
   # Use the "host" command to get the IP address for each subdomain
-  getent hosts $subdomain >> all_ips.txt | uniq all_ips.txt > ips.txt; rm all_ips.txt;
+  getent hosts $subdomain | tee all_ips.txt; uniq all_ips.txt > ips.txt; rm all_ips.txt
 done
 echo "====================================================================================================================================================="
 echo "Printing the IPs"
