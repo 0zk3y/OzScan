@@ -1,10 +1,10 @@
 #!/bin/bash
 #Make Sure GO Lang and Python are installed as all of the tools require it
 if [ $(id -u) -ne 0 ]; then echo "Please run the script as Root"; exit 1; fi
-echo "Please enter Domain Name you want to scan:"
+echo "Please enter Domain Name you want to Scan:"
 read urlname
 echo "You are setting Target as:" $urlname
-echo "Please select what type of Scan do you want"
+echo "Please select what type of Scan do you want:"
 echo "1. List Subdomains Only"
 echo "2. Vulnerability Scan with Nuclei over provided URL"
 echo "3. Vulnerability Scan with Nuclei over all Endpoints of All Subdomains"
