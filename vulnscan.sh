@@ -65,7 +65,7 @@ echo "==========================================================================
 cat subdomains.txt | httpx --silent -o alive.txt
 for subdomain in $(cat subdomains.txt); do
   # Use the "host" command to get the IP address for each subdomain
-  getent hosts $subdomain | tee all_ips.txt; uniq all_ips.txt > ips.txt; rm all_ips.txt
+  getent hosts $subdomain | tee all_ips.txt; uniq all_ips.txt >> ips.txt; rm all_ips.txt
 done
 echo "====================================================================================================================================================="
 echo "Printing the IPs"
