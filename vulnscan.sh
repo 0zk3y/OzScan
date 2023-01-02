@@ -55,6 +55,8 @@ else
     go get -u github.com/tomnomnom/waybackurls
 fi
 if [ "$option" -eq "1" ]; then
+echo "====================================================================================================================================================="
+echo "Running Subdomain Scan"
 echo "Running Scan on" $urlname
 subfinder --silent -d $urlname >> subdomains.txt
 echo "====================================================================================================================================================="
@@ -73,6 +75,7 @@ echo "==========================================================================
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
 echo "HTTPX: alive.txt"
+echo "Alive IPs: ips.txt"
 echo "====================================================================================================================================================="
 echo "Developed by 0zk3y"
 echo "If you face any issues or have any issues please DM on Twitter @0zk3y or create a Pull Request/Issue"
