@@ -6,10 +6,16 @@ Note: Use with caution. You are responsible for your actions. Developers assume 
 
 Running the Program:
 
-```git clone https://github.com/0zk3y/VulnScan```
+```sh
+git clone https://github.com/0zk3y/VulnScan
+```
 
-```cd VulnScan```
+```sh
+cd VulnScan
+```
 
-```sudo sh VulnScan```
+```sh
+sudo sh VulnScan
+```
 
 Note: This tool is very slow as it runs Tools like SQLMap and Nuclei over all URLs it finds, hence takes a lot of patience. Results may be falsepositives you will have to validate that yourself. Also this tool will generate a lot of Duplicates so please remove them using ```aws``` or ```uniq``` command.
