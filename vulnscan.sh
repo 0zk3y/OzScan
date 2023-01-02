@@ -25,7 +25,7 @@ else
     go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 fi
 if which katana >/dev/null; then
-   echo "Katana found"
+   echo "Katana found"  
 else
     echo "Katana not found, Trying to install Katana (Make sure GO Lang is installed, else it will fail)"
     go install github.com/projectdiscovery/katana/cmd/katana@latest
@@ -60,17 +60,13 @@ echo "Running Subdomain Scan"
 echo "Running Scan on" $urlname
 subfinder --silent -d $urlname >> subdomains.txt
 echo "====================================================================================================================================================="
-echo "Printing the alive Domains"
+echo "Printing the alive Domains and their IPs"
 echo "====================================================================================================================================================="
 cat subdomains.txt | httpx --silent -o alive.txt
 for subdomain in $(cat subdomains.txt); do
   # Use the "host" command to get the IP address for each subdomain
   getent hosts $subdomain | tee all_ips.txt; uniq all_ips.txt >> ips.txt; rm all_ips.txt
 done
-echo "====================================================================================================================================================="
-echo "Printing the IPs"
-echo "====================================================================================================================================================="
-cat ips.txt
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
