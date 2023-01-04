@@ -21,7 +21,7 @@ sudo sh OzScan
 Note: This tool is very slow as it runs Tools like SQLMap and Nuclei over all URLs it finds, hence takes a lot of patience. Results may be falsepositives you will have to validate that yourself. Also this tool will generate a lot of Duplicates so please remove them using ```awk``` or ```uniq``` command.
 
 Huge Shoutout to Developers of the Tools which are used in Backend:
-Nuclei- 
+Nuclei- https://github.com/projectdiscovery/nuclei
 Subfinder- https://github.com/projectdiscovery/subfinder
 HTTPX- https://github.com/projectdiscovery/httpx
 Katana- https://github.com/projectdiscovery/katana
