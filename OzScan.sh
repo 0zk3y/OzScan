@@ -46,13 +46,13 @@ if which gf >/dev/null; then
     echo "gf found"
 else
     echo "gf not found, Trying to install gf (Make sure GO Lang is installed, else it will fail)"
-   go get -u github.com/tomnomnom/gf
+   go get -u github.com/tomnomnom/gf@latest
 fi
 if which waybackurls >/dev/null; then
     echo "waybackurls found"
 else
     echo "waybackurls not found, Trying to install waybackurls (Make sure GO Lang is installed, else it will fail)"
-    go get -u github.com/tomnomnom/waybackurls
+    go get -u github.com/tomnomnom/waybackurls@latest
 fi
 if [ "$option" -eq "1" ]; then
 echo "====================================================================================================================================================="
