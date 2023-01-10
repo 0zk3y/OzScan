@@ -35,3 +35,8 @@ sqlMap- https://github.com/sqlmapproject/sqlmap
 WaybackURLs- https://github.com/tomnomnom/waybackurls
 
 GF- https://github.com/tomnomnom/gf
+
+
+In Progress:
+
+XSS Detection using kxss
