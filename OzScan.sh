@@ -12,7 +12,7 @@ echo "4. Vulnerability Scan with Nuclei and SQLMap over SQLi Parameters over Dom
 echo "5. Vulnerability Scan with Nuclei and SQLMap over SQLi Parameters over Domain and all subdomains"
 read option
 echo "Checking if Binaries are installed or not"
-if which sublist3r >/dev/null; then
+if which subfinder >/dev/null; then
     echo "Subfinder found"
 else
     echo "Subfinder not found, Trying to install subfinder (Make sure GO Lang is installed, else it will fail)"
@@ -91,7 +91,7 @@ echo "==========================================================================
 exit 1
 elif [ "$option" -eq "3" ]; then
 echo "Running Scan on" $urlname
-subfinder -d $urlname >> subdomains.txt; httpx -l subdomains.txt >> domains.txt; katana -list domains.txt >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
+subfinder --silent -d $urlname >> subdomains.txt; httpx --silent -l subdomains.txt >> domains.txt; katana --silent -list domains.txt >> endpoints.txt; nuclei --silent -l endpoints.txt -o nuclei_output.txt
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
@@ -105,7 +105,7 @@ echo "==========================================================================
 exit 1
 elif [ "$option" -eq "4" ]; then
 echo "Running Scan on" $urlname
-katana --silent https://$urlname/ >> endpoints.txt; waybackurls $urlname >> all_urls.txt ; echo $urlname | sudo gf sqli >> sqli; nuclei -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
+katana --silent https://$urlname/ >> endpoints.txt; waybackurls $urlname >> all_urls.txt ; echo $urlname | sudo gf sqli >> sqli; nuclei --silent -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Katana: endpoints.txt"
@@ -118,7 +118,7 @@ exit 1
 echo "====================================================================================================================================================="
 elif [ "$option" -eq "5" ]; then
 echo "Running Scan on" $urlname
-subfinder -d $urlname >> subdomains.txt; cat subdomains.txt | httpx | sort -u >> alive_domains.txt; katana --silent alive_domains.txt >> endpoints.txt; waybackurls >> all_urls.txt ; $urlname | sudo gf sqli >> sqli | nuclei -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
+subfinder --silent -d $urlname >> subdomains.txt; httpx --silent -l subdomains.txt >> domains.txt; katana --silent -list domains.txt >> endpoints.txt; waybackurls >> all_urls.txt; $urlname | sudo gf sqli >> sqli | nuclei --silent -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
