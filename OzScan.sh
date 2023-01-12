@@ -25,7 +25,7 @@ else
     go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 fi
 if which katana >/dev/null; then
-   echo "Katana found"  
+   echo "Katana found"
 else
     echo "Katana not found, Trying to install Katana (Make sure GO Lang is installed, else it will fail)"
     go install github.com/projectdiscovery/katana/cmd/katana@latest
@@ -91,7 +91,7 @@ echo "==========================================================================
 exit 1
 elif [ "$option" -eq "3" ]; then
 echo "Running Scan on" $urlname
-subfinder -d $urlname >> subdomains.txt; cat subdomains.txt | httpx | sort -u >> alive_domains.txt; katana --silent alive_domains.txt >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
+subfinder -d $urlname >> subdomains.txt; httpx -l subdomains.txt >> domains.txt; katana -list domains.txt >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
