@@ -3,6 +3,8 @@
 if [ $(id -u) -ne 0 ]; then echo "Please run the script as Root"; exit 1; fi
 echo "Please enter Domain Name you want to Scan:"
 read urlname
+mkdir $urlname
+cd $urlname
 echo "You are setting Target as:" $urlname
 echo "Please select what type of Scan do you want:"
 echo "1. List Subdomains Only"
@@ -70,7 +72,7 @@ for subdomain in $(cat subdomains.txt); do
   getent hosts $subdomain | tee all_ips.txt; uniq all_ips.txt >> ips.txt; rm all_ips.txt
 done
 echo "====================================================================================================================================================="
-echo "Scanning Completed, results are saved as below"
+echo "Scanning Completed, results are saved as below in directory named" $urlname
 echo "Subfinder: subdomains.txt"
 echo "HTTPX: alive.txt"
 echo "Alive IPs: ips.txt"
@@ -86,7 +88,7 @@ echo "Output of Katana is stored in: endpoints.txt"
 sleep 2
 nuclei -l endpoints.txt -o nuclei_output.txt
 echo "====================================================================================================================================================="
-echo "Scanning Completed, results are saved as below"
+echo "Scanning Completed, results are saved as below in directory named" $urlname
 echo "Katana: endpoints.txt"
 echo "Nuclei: nuclei_output.txt"
 echo "====================================================================================================================================================="
@@ -98,7 +100,7 @@ elif [ "$option" -eq "3" ]; then
 echo "Running Scan on" $urlname
 sleep 2
 subfinder -d $urlname >> subdomains.txt; sleep 2
-echo "Subfinders output is saved in: subdomains.txt"
+echo "Scanning Completed, results are saved as below in directory named" $urlname
 sleep 2
 httpx -l subdomains.txt >> domains.txt; sleep 2
 echo "HTTPX's output is saved in: domains.txt"
@@ -108,7 +110,7 @@ echo "Katana's output is saved in: endpoints.txt"
 sleep 2
 nuclei -l endpoints.txt -o nuclei_output.txt
 echo "====================================================================================================================================================="
-echo "Scanning Completed, results are saved as below"
+echo "Scanning Completed, results are saved as below in directory named" $urlname
 echo "Subfinder: subdomains.txt"
 echo "httpx: domains.txt"
 echo "Katana: endpoints.txt"
@@ -134,7 +136,7 @@ echo "Nuclei's output is saved in: nuclei_output.txt"
 sleep 2
 sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
-echo "Scanning Completed, results are saved as below"
+echo "Scanning Completed, results are saved as below in directory named" $urlname
 echo "Katana: endpoints.txt"
 echo "Nuclei: nuclei_output.txt"
 echo "WaybackUrls: all_urls.txt"
@@ -165,7 +167,7 @@ echo "Nuclei's output is saved in: nuclei_output.txt"
 sleep 2
 sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
-echo "Scanning Completed, results are saved as below"
+echo "Scanning Completed, results are saved as below in directory named" $urlname
 echo "Subfinder: subdomains.txt"
 echo "httpx: domains.txt"
 echo "Katana: endpoints.txt"
