@@ -59,9 +59,11 @@ echo "==========================================================================
 echo "Running Subdomain Scan"
 echo "Running Scan on" $urlname
 subfinder --silent -d $urlname >> subdomains.txt
+sleep 2
 echo "====================================================================================================================================================="
 echo "Printing the alive Domains and their IPs"
 echo "====================================================================================================================================================="
+sleep 2
 cat subdomains.txt | httpx --silent -o alive.txt
 for subdomain in $(cat subdomains.txt); do
   # Use the "host" command to get the IP address for each subdomain
@@ -79,7 +81,10 @@ echo "==========================================================================
 exit 1
 elif [ "$option" -eq "2" ]; then
 echo "Running Scan on" $urlname
-katana -u https://$urlname/ >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
+katana -u https://$urlname/ >> endpoints.txt; sleep 5
+echo "Output of Katana is stored in: endpoints.txt"
+sleep 2
+nuclei -l endpoints.txt -o nuclei_output.txt
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Katana: endpoints.txt"
@@ -91,11 +96,21 @@ echo "==========================================================================
 exit 1
 elif [ "$option" -eq "3" ]; then
 echo "Running Scan on" $urlname
-subfinder -d $urlname >> subdomains.txt; httpx -l subdomains.txt >> domains.txt; katana -list domains.txt >> endpoints.txt; nuclei -l endpoints.txt -o nuclei_output.txt
+sleep 2
+subfinder -d $urlname >> subdomains.txt; sleep 2
+echo "Subfinders output is saved in: subdomains.txt"
+sleep 2
+httpx -l subdomains.txt >> domains.txt; sleep 2
+echo "HTTPX's output is saved in: domains.txt"
+sleep 2
+katana -list domains.txt >> endpoints.txt; sleep 2
+echo "Katana's output is saved in: endpoints.txt"
+sleep 2
+nuclei -l endpoints.txt -o nuclei_output.txt
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
-echo "httpx: alive_domains.txt"
+echo "httpx: domains.txt"
 echo "Katana: endpoints.txt"
 echo "Nuclei: nuclei_output.txt"
 echo "====================================================================================================================================================="
@@ -105,7 +120,19 @@ echo "==========================================================================
 exit 1
 elif [ "$option" -eq "4" ]; then
 echo "Running Scan on" $urlname
-katana https://$urlname/ >> endpoints.txt; waybackurls $urlname >> all_urls.txt; echo $urlname | sudo gf sqli >> sqli; nuclei -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
+katana https://$urlname/ >> endpoints.txt; sleep 2
+echo "Katana's output is saved in: endpoints.txt"
+sleep 2
+waybackurls $urlname >> all_urls.txt; sleep 2
+echo "Waybackurls output is saved in: all_urls.txt"
+sleep 2
+echo $urlname | sudo gf sqli >> sqli; sleep 2
+echo "gf's output is saved in: sqli.txt"
+sleep 2
+nuclei -l endpoints.txt -o nuclei_output.txt; sleep 2
+echo "Nuclei's output is saved in: nuclei_output.txt"
+sleep 2
+sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Katana: endpoints.txt"
@@ -118,11 +145,29 @@ exit 1
 echo "====================================================================================================================================================="
 elif [ "$option" -eq "5" ]; then
 echo "Running Scan on" $urlname
-subfinder -d $urlname >> subdomains.txt; httpx -l subdomains.txt >> domains.txt; katana -list domains.txt >> endpoints.txt; waybackurls >> all_urls.txt;echo $urlname | sudo gf sqli >> sqli | nuclei -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
+subfinder -d $urlname >> subdomains.txt; sleep 2
+echo "Subfinder's output is saved in: subdomains.txt"
+sleep 2
+httpx -l subdomains.txt >> domains.txt; sleep 2
+echo "HTTPX's output is saved in: domains.txt"
+sleep 2
+katana -list domains.txt >> endpoints.txt; sleep 2
+echo "Katana's output is saved in: endpoints.txt"
+sleep 2
+waybackurls >> all_urls.txt;sleep 2
+echo "Waybackurl's output is saved in: all_urls.txt"
+sleep 2
+echo $urlname | sudo gf sqli >> sqli; sleep 2
+echo "gf's output is saved in: sqli.txt"
+sleep 2
+nuclei -l endpoints.txt -o nuclei_output.txt; sleep 2
+echo "Nuclei's output is saved in: nuclei_output.txt"
+sleep 2
+sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
-echo "httpx: alive_domains.txt"
+echo "httpx: domains.txt"
 echo "Katana: endpoints.txt"
 echo "Nuclei: nuclei_output.txt"
 echo "WaybackUrls: all_urls.txt"
