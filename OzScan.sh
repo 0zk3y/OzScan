@@ -105,7 +105,7 @@ echo "==========================================================================
 exit 1
 elif [ "$option" -eq "4" ]; then
 echo "Running Scan on" $urlname
-katana --silent https://$urlname/ >> endpoints.txt; waybackurls $urlname >> all_urls.txt ; echo $urlname | sudo gf sqli >> sqli; nuclei --silent -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
+katana --silent https://$urlname/ >> endpoints.txt; waybackurls $urlname >> all_urls.txt; echo $urlname | sudo gf sqli >> sqli; nuclei --silent -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Katana: endpoints.txt"
@@ -118,7 +118,7 @@ exit 1
 echo "====================================================================================================================================================="
 elif [ "$option" -eq "5" ]; then
 echo "Running Scan on" $urlname
-subfinder --silent -d $urlname >> subdomains.txt; httpx --silent -l subdomains.txt >> domains.txt; katana --silent -list domains.txt >> endpoints.txt; waybackurls >> all_urls.txt; $urlname | sudo gf sqli >> sqli | nuclei --silent -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
+subfinder --silent -d $urlname >> subdomains.txt; httpx --silent -l subdomains.txt >> domains.txt; katana --silent -list domains.txt >> endpoints.txt; waybackurls >> all_urls.txt;echo $urlname | sudo gf sqli >> sqli | nuclei --silent -l endpoints.txt -o nuclei_output.txt; sqlmap -m sqli --batch --level 5 --risk 3
 echo "====================================================================================================================================================="
 echo "Scanning Completed, results are saved as below"
 echo "Subfinder: subdomains.txt"
