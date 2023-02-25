@@ -155,8 +155,7 @@ echo "HTTPX's output is saved in: domains.txt"
 sleep 2
 katana -list domains.txt >> endpoints.txt; sleep 2
 echo "Katana's output is saved in: endpoints.txt"
-sleep 2
-waybackurls >> all_urls.txt;sleep 2
+waybackurls $urlname >> all_urls.txt;sleep 2
 echo "Waybackurl's output is saved in: all_urls.txt"
 sleep 2
 echo $urlname | sudo gf sqli >> sqli; sleep 2
