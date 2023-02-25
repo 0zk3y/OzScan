@@ -59,7 +59,7 @@ fi
 if [ "$option" -eq "1" ]; then
 echo "====================================================================================================================================================="
 echo "Running Subdomain Scan"
-echo "Running Scan on" $urlname
+echo "Running Scan on:" $urlname
 subfinder --silent -d $urlname >> subdomains.txt
 sleep 2
 echo "====================================================================================================================================================="
@@ -82,7 +82,7 @@ echo "If you face any issues or have any issues please DM on Twitter @0zk3y or c
 echo "====================================================================================================================================================="
 exit 1
 elif [ "$option" -eq "2" ]; then
-echo "Running Scan on" $urlname
+echo "Running Scan on:" $urlname
 katana -u https://$urlname/ >> endpoints.txt; sleep 5
 echo "Output of Katana is stored in: endpoints.txt"
 sleep 2
@@ -97,7 +97,7 @@ echo "If you face any issues or have any issues please DM on Twitter @0zk3y or c
 echo "====================================================================================================================================================="
 exit 1
 elif [ "$option" -eq "3" ]; then
-echo "Running Scan on" $urlname
+echo "Running Scan on:" $urlname
 sleep 2
 subfinder -d $urlname >> subdomains.txt; sleep 2
 echo "Scanning Completed, results are saved as below in directory named" $urlname
