@@ -125,6 +125,9 @@ echo "Running Scan on" $urlname
 katana https://$urlname/ >> endpoints.txt; sleep 2
 echo "Katana's output is saved in: endpoints.txt"
 sleep 2
+echo "Running waybackurls:"
+touch all_urls.txt
+chmod 660 all_urls.txt
 waybackurls $urlname >> all_urls.txt; sleep 2
 echo "Waybackurls output is saved in: all_urls.txt"
 sleep 2
