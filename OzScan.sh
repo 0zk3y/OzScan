@@ -165,7 +165,7 @@ waybackurls $urlname >> all_urls.txt
 echo "Waybackurl's output is saved in: all_urls.txt"
 sleep 2
 echo $urlname | sudo gf sqli >> sqli
-echo "gf's output is saved in: sqli.txt"
+echo "gf's output is saved in: sqli"
 sleep 2
 nuclei -l endpoints.txt -o nuclei_output.txt
 echo "Nuclei's output is saved in: nuclei_output.txt"
