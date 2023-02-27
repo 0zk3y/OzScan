@@ -83,7 +83,7 @@ echo "==========================================================================
 exit 1
 elif [ "$option" -eq "2" ]; then
 echo "Running Scan on:" $urlname
-katana -u https://$urlname/ >> endpoints.txt; sleep 5
+katana -u https://$urlname/ >> endpoints.txt
 echo "Output of Katana is stored in: endpoints.txt"
 sleep 2
 nuclei -l endpoints.txt -o nuclei_output.txt
@@ -122,19 +122,19 @@ echo "==========================================================================
 exit 1
 elif [ "$option" -eq "4" ]; then
 echo "Running Scan on" $urlname
-katana https://$urlname/ >> endpoints.txt; sleep 2
+katana https://$urlname/ >> endpoints.txt
 echo "Katana's output is saved in: endpoints.txt"
 sleep 2
 echo "Running waybackurls:"
 touch all_urls.txt
 chmod 660 all_urls.txt
-waybackurls $urlname >> all_urls.txt; sleep 2
+waybackurls $urlname >> all_urls.txt
 echo "Waybackurls output is saved in: all_urls.txt"
 sleep 2
-echo $urlname | sudo gf sqli >> sqli; sleep 2
+echo $urlname | sudo gf sqli >> sqli
 echo "gf's output is saved in: sqli.txt"
 sleep 2
-nuclei -l endpoints.txt -o nuclei_output.txt; sleep 2
+nuclei -l endpoints.txt -o nuclei_output.txt
 echo "Nuclei's output is saved in: nuclei_output.txt"
 sleep 2
 sqlmap -m sqli --batch --level 5 --risk 3
@@ -150,24 +150,24 @@ exit 1
 echo "====================================================================================================================================================="
 elif [ "$option" -eq "5" ]; then
 echo "Running Scan on" $urlname
-subfinder -d $urlname >> subdomains.txt; sleep 2
+subfinder -d $urlname >> subdomains.txt
 echo "Subfinder's output is saved in: subdomains.txt"
 sleep 2
-httpx -l subdomains.txt >> domains.txt; sleep 2
+httpx -l subdomains.txt >> domains.txt
 echo "HTTPX's output is saved in: domains.txt"
 sleep 2
-katana -list domains.txt >> endpoints.txt; sleep 2
+katana -list domains.txt >> endpoints.txt
 echo "Katana's output is saved in: endpoints.txt"
 echo "Running waybackurls:"
 touch all_urls.txt
 chmod 660 all_urls.txt
-waybackurls $urlname >> all_urls.txt;sleep 2
+waybackurls $urlname >> all_urls.txt
 echo "Waybackurl's output is saved in: all_urls.txt"
 sleep 2
-echo $urlname | sudo gf sqli >> sqli; sleep 2
+echo $urlname | sudo gf sqli >> sqli
 echo "gf's output is saved in: sqli.txt"
 sleep 2
-nuclei -l endpoints.txt -o nuclei_output.txt; sleep 2
+nuclei -l endpoints.txt -o nuclei_output.txt
 echo "Nuclei's output is saved in: nuclei_output.txt"
 sleep 2
 sqlmap -m sqli --batch --level 5 --risk 3
