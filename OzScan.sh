@@ -156,6 +156,8 @@ sleep 2
 katana -list domains.txt >> endpoints.txt; sleep 2
 echo "Katana's output is saved in: endpoints.txt"
 echo "Running waybackurls:"
+touch all_urls.txt
+chmod 660 all_urls.txt
 waybackurls $urlname >> all_urls.txt;sleep 2
 echo "Waybackurl's output is saved in: all_urls.txt"
 sleep 2
