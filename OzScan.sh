@@ -38,6 +38,12 @@ else
     echo "Nuclei not found, Trying to install Nuclei (Make sure GO Lang is installed, else it will fail)"
     go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
 fi
+if which dnsx >/dev/null; then
+    echo "DNSx found"
+else
+    echo "DNSx not found, Trying to install DNSx (Make sure GO Lang is installed, else it will fail)"
+    go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
+fi
 if which sqlmap >/dev/null; then
     echo "SQLMap found"
 else
