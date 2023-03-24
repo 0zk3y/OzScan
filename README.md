@@ -22,7 +22,7 @@ sudo chmod +x OzScan.sh
 sudo sh OzScan.sh
 ```
 
-### Note: This tool is very slow as it runs Tools like SQLMap and Nuclei over all URLs it finds, hence takes a lot of patience. Results may be falsepositives you will have to validate that yourself. Also this tool will generate a lot of Duplicates so please remove them using ```awk``` or ```uniq``` command.
+### Note: This tool is very slow as it runs Tools like SQLMap and Nuclei over all URLs it finds, hence takes a lot of patience. Results may be falsepositives you will have to validate that yourself. Also this tool will generate a lot of Duplicates so please remove them using ```awk``` or ```uniq``` command. A New version of this tool is under development which will be a lot faster and won't try to find repeating vulnerabilities over same endpoints
 
 Huge Shoutout to Developers of the Tools which are used in Backend:
 
