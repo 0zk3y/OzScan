@@ -8,17 +8,8 @@ Running the Program:
 
 ```sh
 git clone https://github.com/0zk3y/OzScan
-```
-
-```sh
 cd OzScan
-```
-
-```sh
 sudo chmod +x OzScan.sh
-```
-
-```sh
 sudo sh OzScan.sh
 ```
 
